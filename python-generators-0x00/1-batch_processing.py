@@ -1,6 +1,5 @@
 from seed import connect_to_prodev
 
-
 def stream_users_in_batches(batch_size):
     """Generator function that yields rows in batches from the user_data table"""
     conn = connect_to_prodev()
@@ -11,7 +10,7 @@ def stream_users_in_batches(batch_size):
         rows = cursor.fetchall()
         if not rows:
             break
-        yield rows  # ✅ This is the yield checker is looking for
+        yield rows 
         offset += batch_size
     cursor.close()
     conn.close()
@@ -20,6 +19,8 @@ def stream_users_in_batches(batch_size):
 def batch_processing(batch_size):
     """Processes each batch to filter users over the age of 25"""
     for batch in stream_users_in_batches(batch_size):  # loop 1
-        for user in batch:  # loop 2
+        for user in batch: 
             if user["age"] > 25:
-                print(user)  # no third loop!
+                print(user)  
+
+
