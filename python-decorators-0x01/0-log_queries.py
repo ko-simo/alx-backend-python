@@ -5,7 +5,6 @@ import functools
 def log_queries(func):
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
-        # استخراج الاستعلام من الوسيطات
         query = kwargs.get('query') if 'query' in kwargs else args[0] if args else None
         print(f"[LOG] Executing SQL query: {query}")
         return func(*args, **kwargs)
